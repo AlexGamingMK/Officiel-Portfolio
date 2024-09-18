@@ -1,0 +1,366 @@
+<html><head><base><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Projet Réseau Avancé</title><style>
+    :root {
+        --bg-color: #0f0f0f;
+        --text-color: #f0f0f0;
+        --accent-color: #ffd700;
+        --secondary-bg: #1a1a1a;
+        --hover-color: #2a2a2a;
+    }
+    
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+    
+    header {
+        background-color: var(--secondary-bg);
+        padding: 1rem;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    nav ul {
+        list-style-type: none;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+    
+    nav a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+    
+    nav a:hover {
+        color: var(--accent-color);
+    }
+    
+    .portfolio-btn, .download-btn {
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+    
+    .portfolio-btn {
+        background-color: var(--accent-color);
+        color: var(--bg-color);
+    }
+    
+    .portfolio-btn:hover {
+        background-color: var(--text-color);
+        color: var(--bg-color);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+    }
+    
+    .download-btn {
+        background-color: var(--secondary-bg);
+        color: var(--accent-color);
+        border: 2px solid var(--accent-color);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .download-btn:hover {
+        background-color: var(--accent-color);
+        color: var(--bg-color);
+    }
+    
+    .download-btn .icon {
+        width: 20px;
+        height: 20px;
+        border: 2px solid currentColor;
+        border-top: 2px solid transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        display: none;
+    }
+    
+    .download-btn:active .icon {
+        display: inline-block;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    main {
+        padding: 6rem 2rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    h1, h2 {
+        color: var(--accent-color);
+        margin-bottom: 1.5rem;
+    }
+    
+    .firewall-diagram {
+        width: 100%;
+        max-width: 1000px;
+        margin: 2rem auto;
+        display: block;
+        filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+    }
+    
+    .feature {
+        background-color: var(--secondary-bg);
+        border-left: 4px solid var(--accent-color);
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-radius: 0 10px 10px 0;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .feature:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+    }
+    
+    .section-content {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    
+    .section-content.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .hoverable {
+        transition: all 0.3s ease;
+        transform-origin: center;
+    }
+
+    .hoverable:hover {
+        transform: scale(1.2);
+        z-index: 10;
+    }
+
+    .main-text, .details {
+        transition: opacity 0.3s ease;
+    }
+
+    .details {
+        opacity: 0;
+        fill: #ffd700;
+        font-weight: bold;
+    }
+
+    .hoverable:hover .main-text {
+        opacity: 0;
+    }
+
+    .hoverable:hover .details {
+        opacity: 1;
+    }
+
+    .hoverable#firewall .details {
+        fill: #0f0f0f;
+    }
+</style></head><body>
+    <header>
+        <nav>
+            <h1>Projet Réseau</h1>
+            <ul>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#features">Caractéristiques</a></li>
+                <li><a href="#diagram">Diagramme</a></li>
+                <li><a href="index.html" class="portfolio-btn">Revenir sur le portfolio</a></li>
+                <li><a href="#" class="download-btn" id="downloadBtn">Télécharger <span class="icon"></span></a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="about">
+            <h2>À propos du projet</h2>
+            <div class="section-content">
+                <p>Notre projet réseau de pointe intègre un pare-feu avancé pour une sécurité sans compromis. En combinant des technologies à la pointe et des stratégies de sécurité éprouvées, nous avons conçu une infrastructure réseau robuste, évolutive et hautement sécurisée.</p>
+            </div>
+        </section>
+        
+        <section id="features">
+            <h2>Caractéristiques principales</h2>
+            <div class="section-content">
+                <div class="feature">
+                    <h3>Pare-feu nouvelle génération</h3>
+                    <p>Protection avancée contre les menaces avec inspection approfondie des paquets et analyse comportementale en temps réel.</p>
+                </div>
+                <div class="feature">
+                    <h3>Segmentation de réseau intelligente</h3>
+                    <p>Isolation dynamique des segments réseau pour une défense proactive, séparant efficacement le développeur, le site web et la base de données.</p>
+                </div>
+                <div class="feature">
+                    <h3>Contrôle d'accès granulaire</h3>
+                    <p>Gestion fine des permissions permettant au développeur d'avoir un accès exclusif à certaines ressources critiques.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="diagram">
+            <h2>Diagramme du réseau</h2>
+            <div class="section-content">
+                <svg class="firewall-diagram" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="800" height="600" fill="#1a1a1a"/>
+                    
+                    <!-- Internet (WAN) -->
+                    <ellipse cx="400" cy="100" rx="120" ry="60" fill="#2a2a2a" stroke="#ffd700" stroke-width="2"/>
+                    <text x="400" y="105" text-anchor="middle" fill="#f0f0f0" font-size="16">Internet (WAN)</text>
+                    <text x="400" y="130" text-anchor="middle" fill="#f0f0f0" font-size="14">8.8.8.8</text>
+                    
+                    <!-- Pare-feu -->
+                    <g class="hoverable" id="firewall" transform-origin="400 300">
+                        <rect x="325" y="225" width="150" height="150" fill="#ffd700" stroke="#0f0f0f" stroke-width="2"/>
+                        <text class="main-text" x="400" y="285" text-anchor="middle" fill="#0f0f0f" font-size="18" font-weight="bold">Pare-feu</text>
+                        <text class="main-text" x="400" y="310" text-anchor="middle" fill="#0f0f0f" font-size="14">192.168.1.1</text>
+                        <text class="details" x="400" y="285" text-anchor="middle" fill="#0f0f0f" font-size="14" opacity="0">Inspection approfondie des paquets</text>
+                        <text class="details" x="400" y="310" text-anchor="middle" fill="#0f0f0f" font-size="14" opacity="0">Analyse comportementale</text>
+                        <text class="details" x="400" y="335" text-anchor="middle" fill="#0f0f0f" font-size="14" opacity="0">Contrôle d'accès granulaire</text>
+                    </g>
+                    
+                    <!-- Site web -->
+                    <g class="hoverable" id="website" transform-origin="160 290">
+                        <rect x="75" y="225" width="170" height="120" fill="#2a2a2a" stroke="#ffd700" stroke-width="2" rx="15" ry="15"/>
+                        <text class="main-text" x="160" y="265" text-anchor="middle" fill="#ffd700" font-size="18">Site Web</text>
+                        <text class="main-text" x="160" y="290" text-anchor="middle" fill="#ffd700" font-size="14">192.168.1.10</text>
+                        <text class="details" x="160" y="265" text-anchor="middle" fill="#ffd700" font-size="14" opacity="0">Serveur Apache</text>
+                        <text class="details" x="160" y="290" text-anchor="middle" fill="#ffd700" font-size="14" opacity="0">PHP 7.4</text>
+                        <text class="details" x="160" y="315" text-anchor="middle" fill="#ffd700" font-size="14" opacity="0">Sécurité renforcée</text>
+                    </g>
+                    
+                    <!-- Développeur -->
+                    <g class="hoverable" id="dev" transform-origin="160 450">
+                        <circle cx="160" cy="450" r="60" fill="#f0f0f0" stroke="#ffd700" stroke-width="2"/>
+                        <text class="main-text" x="160" y="435" text-anchor="middle" fill="#0f0f0f" font-size="18">Dev</text>
+                        <text class="main-text" x="160" y="460" text-anchor="middle" fill="#0f0f0f" font-size="14">192.168.1.100</text>
+                        <text class="details" x="160" y="435" text-anchor="middle" fill="#ffd700" font-size="14" opacity="0">Accès SSH sécurisé</text>
+                        <text class="details" x="160" y="460" text-anchor="middle" fill="#ffd700" font-size="14" opacity="0">Git, Node.js</text>
+                        <text class="details" x="160" y="485" text-anchor="middle" fill="#ffd700" font-size="14" opacity="0">Environnement isolé</text>
+                    </g>
+                    
+                    <!-- Base de données -->
+                    <g class="hoverable" id="database" transform-origin="660 290">
+                        <rect x="575" y="225" width="170" height="120" fill="#2a2a2a" stroke="#ffd700" stroke-width="2" rx="15" ry="15"/>
+                        <text class="main-text" x="660" y="265" text-anchor="middle" fill="#ffd700" font-size="18">Base de</text>
+                        <text class="main-text" x="660" y="290" text-anchor="middle" fill="#ffd700" font-size="18">données</text>
+                        <text class="main-text" x="660" y="315" text-anchor="middle" fill="#ffd700" font-size="14">192.168.1.20</text>
+                        <text class="details" x="660" y="265" text-anchor="middle" fill="#ffd700" font-size="14" opacity="0">MySQL 8.0</text>
+                        <text class="details" x="660" y="290" text-anchor="middle" fill="#ffd700" font-size="14" opacity="0">Réplication activée</text>
+                        <text class="details" x="660" y="315" text-anchor="middle" fill="#ffd700" font-size="14" opacity="0">Chiffrement des données</text>
+                    </g>
+                    
+                    <!-- Connections -->
+                    <line x1="400" y1="160" x2="400" y2="225" stroke="#ffd700" stroke-width="3"/>
+                    <line x1="160" y1="345" x2="160" y2="390" stroke="#ffd700" stroke-width="3"/>
+                    <line x1="245" y1="290" x2="325" y2="290" stroke="#ffd700" stroke-width="3"/>
+                    <line x1="475" y1="290" x2="575" y2="290" stroke="#ffd700" stroke-width="3"/>
+                </svg>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+    
+    // Intersection Observer for fade-in effect
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.section-content').forEach(section => {
+        observer.observe(section);
+    });
+
+    // Download button functionality
+    document.getElementById('downloadBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Show loading icon
+        this.querySelector('.icon').style.display = 'inline-block';
+        
+        // Simulate download (replace with actual download logic)
+        setTimeout(() => {
+            // Hide loading icon
+            this.querySelector('.icon').style.display = 'none';
+            
+            // Create a blob with some content (replace with actual content)
+            const content = "Contenu du projet réseau";
+            const blob = new Blob([content], {type: "text/plain"});
+            
+            // Create a temporary URL for the blob
+            const url = window.URL.createObjectURL(blob);
+            
+            // Create a temporary anchor element and trigger the download
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'projet_reseau.txt';
+            document.body.appendChild(a);
+            a.click();
+            
+            // Clean up
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        }, 2000); // Simulate 2 second download time
+    });
+
+    // Hover effect for SVG elements
+    document.querySelectorAll('.hoverable').forEach(element => {
+        element.addEventListener('mouseenter', function() {
+            this.querySelectorAll('.main-text').forEach(text => {
+                text.style.opacity = '0';
+            });
+            this.querySelectorAll('.details').forEach(detail => {
+                detail.style.opacity = '1';
+            });
+            this.style.transform = 'scale(1.2)';
+            this.style.zIndex = '10';
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            this.querySelectorAll('.main-text').forEach(text => {
+                text.style.opacity = '1';
+            });
+            this.querySelectorAll('.details').forEach(detail => {
+                detail.style.opacity = '0';
+            });
+            this.style.transform = 'scale(1)';
+            this.style.zIndex = '1';
+        });
+    });
+    </script>
+</body></html>
