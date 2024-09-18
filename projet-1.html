@@ -14,6 +14,7 @@
         background-color: var(--bg-color);
         color: var(--text-color);
         line-height: 1.6;
+        user-select: none;
     }
     
     header {
@@ -155,7 +156,7 @@
 
     .hoverable:hover {
         transform: scale(1.2);
-        z-index: 10;
+        z-index: 8;
     }
 
     .main-text, .details {
@@ -223,7 +224,7 @@
             <h2>Diagramme du réseau</h2>
             <div class="section-content">
                 <svg class="firewall-diagram" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0" y="0" width="800" height="600" fill="#1a1a1a"/>
+                    <rect x="0" y="0" width="1000" height="800" fill="#1a1a1a"/>
                     
                     <!-- Internet (WAN) -->
                     <ellipse cx="400" cy="100" rx="120" ry="60" fill="#2a2a2a" stroke="#ffd700" stroke-width="2"/>
@@ -235,9 +236,9 @@
                         <rect x="325" y="225" width="150" height="150" fill="#ffd700" stroke="#0f0f0f" stroke-width="2"/>
                         <text class="main-text" x="400" y="285" text-anchor="middle" fill="#0f0f0f" font-size="18" font-weight="bold">Pare-feu</text>
                         <text class="main-text" x="400" y="310" text-anchor="middle" fill="#0f0f0f" font-size="14">192.168.1.1</text>
-                        <text class="details" x="400" y="285" text-anchor="middle" fill="#0f0f0f" font-size="14" opacity="0">Inspection approfondie des paquets</text>
-                        <text class="details" x="400" y="310" text-anchor="middle" fill="#0f0f0f" font-size="14" opacity="0">Analyse comportementale</text>
-                        <text class="details" x="400" y="335" text-anchor="middle" fill="#0f0f0f" font-size="14" opacity="0">Contrôle d'accès granulaire</text>
+                        <text class="details" x="400" y="285" text-anchor="middle" fill="#0f0f0f" font-size="14" opacity="0">PFSense</text>
+                        <text class="details" x="400" y="310" text-anchor="middle" fill="#0f0f0f" font-size="14" opacity="0">. . .</text>
+                        <text class="details" x="400" y="335" text-anchor="middle" fill="#0f0f0f" font-size="14" opacity="0">. . .</text>
                     </g>
                     
                     <!-- Site web -->
