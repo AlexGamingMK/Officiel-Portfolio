@@ -1,4 +1,4 @@
-<html><head><base><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Projet Réseau Avancé</title><style>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Projet Réseau Avancé</title><style>
     :root {
         --bg-color: #0f0f0f;
         --text-color: #f0f0f0;
@@ -14,7 +14,6 @@
         background-color: var(--bg-color);
         color: var(--text-color);
         line-height: 1.6;
-        user-select: none;
     }
     
     header {
@@ -118,7 +117,8 @@
     
     .firewall-diagram {
         width: 100%;
-        max-width: 1000px;
+        max-width: 1200px;
+        height: auto;
         margin: 2rem auto;
         display: block;
         filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
@@ -155,8 +155,8 @@
     }
 
     .hoverable:hover {
-        transform: scale(1.2);
-        z-index: 8;
+        transform: scale(1.1);
+        z-index: 5;
     }
 
     .main-text, .details {
@@ -178,6 +178,10 @@
     }
 
     .hoverable#firewall .details {
+        fill: #0f0f0f;
+    }
+
+    .hoverable#dev .details {
         fill: #0f0f0f;
     }
 </style></head><body>
@@ -223,60 +227,82 @@
         <section id="diagram">
             <h2>Diagramme du réseau</h2>
             <div class="section-content">
-                <svg class="firewall-diagram" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0" y="0" width="1000" height="800" fill="#1a1a1a"/>
+                <svg class="firewall-diagram" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="1000" height="700" fill="#1a1a1a"/>
                     
                     <!-- Internet (WAN) -->
-                    <ellipse cx="400" cy="100" rx="120" ry="60" fill="#2a2a2a" stroke="#ffd700" stroke-width="2"/>
-                    <text x="400" y="105" text-anchor="middle" fill="#f0f0f0" font-size="16">Internet (WAN)</text>
-                    <text x="400" y="130" text-anchor="middle" fill="#f0f0f0" font-size="14">8.8.8.8</text>
+                    <ellipse cx="500" cy="70" rx="120" ry="30" fill="#2a2a2a" stroke="#ffd700" stroke-width="2"/>
+                    <text x="500" y="75" text-anchor="middle" fill="#f0f0f0" font-size="14">Internet (WAN)</text>
+                    <text x="500" y="90" text-anchor="middle" fill="#f0f0f0" font-size="12">8.8.8.8</text>
                     
+                    <!-- WAN Gateway -->
+                    <rect x="450" y="125" width="100" height="40" fill="#4a4a4a" stroke="#ffd700" stroke-width="2"/>
+                    <text x="500" y="145" text-anchor="middle" fill="#f0f0f0" font-size="12">Gateway WAN</text>
+                    <text x="500" y="160" text-anchor="middle" fill="#f0f0f0" font-size="10">192.168.0.1/24</text>
+
                     <!-- Pare-feu -->
-                    <g class="hoverable" id="firewall" transform-origin="400 300">
-                        <rect x="325" y="225" width="150" height="150" fill="#ffd700" stroke="#0f0f0f" stroke-width="2"/>
-                        <text class="main-text" x="400" y="285" text-anchor="middle" fill="#0f0f0f" font-size="18" font-weight="bold">Pare-feu</text>
-                        <text class="main-text" x="400" y="310" text-anchor="middle" fill="#0f0f0f" font-size="14">192.168.1.1</text>
-                        <text class="details" x="400" y="285" text-anchor="middle" fill="#0f0f0f" font-size="14" opacity="0">PFSense</text>
-                        <text class="details" x="400" y="310" text-anchor="middle" fill="#0f0f0f" font-size="14" opacity="0">. . .</text>
-                        <text class="details" x="400" y="335" text-anchor="middle" fill="#0f0f0f" font-size="14" opacity="0">. . .</text>
+                    <g class="hoverable" id="firewall" transform-origin="500 300">
+                        <rect x="440" y="230" width="120" height="120" fill="#ffd700" stroke="#0f0f0f" stroke-width="2"/>
+                        <text class="main-text" x="500" y="280" text-anchor="middle" fill="#0f0f0f" font-size="16" font-weight="bold">Pare-feu</text>
+                        <text class="main-text" x="500" y="300" text-anchor="middle" fill="#0f0f0f" font-size="12">192.168.1.1</text>
+                        <text class="details" x="500" y="270" text-anchor="middle" fill="#0f0f0f" font-size="12" opacity="0">. . .<text>
+                        <text class="details" x="500" y="290" text-anchor="middle" fill="#0f0f0f" font-size="12" opacity="0">. . .<text>
+                        <text class="details" x="500" y="310" text-anchor="middle" fill="#0f0f0f" font-size="12" opacity="0">Contrôle d'accès granulaire</text>
                     </g>
                     
-                    <!-- Site web -->
-                    <g class="hoverable" id="website" transform-origin="160 290">
-                        <rect x="75" y="225" width="170" height="120" fill="#2a2a2a" stroke="#ffd700" stroke-width="2" rx="15" ry="15"/>
-                        <text class="main-text" x="160" y="265" text-anchor="middle" fill="#ffd700" font-size="18">Site Web</text>
-                        <text class="main-text" x="160" y="290" text-anchor="middle" fill="#ffd700" font-size="14">192.168.1.10</text>
-                        <text class="details" x="160" y="265" text-anchor="middle" fill="#ffd700" font-size="14" opacity="0">Serveur Apache</text>
-                        <text class="details" x="160" y="290" text-anchor="middle" fill="#ffd700" font-size="14" opacity="0">PHP 7.4</text>
-                        <text class="details" x="160" y="315" text-anchor="middle" fill="#ffd700" font-size="14" opacity="0">Sécurité renforcée</text>
+                    <!-- DMZ Gateway -->
+                    <rect x="240" y="275" width="100" height="40" fill="#4a4a4a" stroke="#ffd700" stroke-width="2"/>
+                    <text x="290" y="295" text-anchor="middle" fill="#f0f0f0" font-size="12">Gateway DMZ</text>
+                    <text x="290" y="310" text-anchor="middle" fill="#f0f0f0" font-size="10">172.16.0.1/16</text>
+
+                    <!-- Site web (left side) -->
+                    <g class="hoverable" id="website" transform-origin="140 300">
+                        <rect x="70" y="245" width="140" height="100" fill="#2a2a2a" stroke="#ffd700" stroke-width="2" rx="15" ry="15"/>
+                        <text class="main-text" x="140" y="280" text-anchor="middle" fill="#ffd700" font-size="16">Site Web</text>
+                        <text class="main-text" x="140" y="300" text-anchor="middle" fill="#ffd700" font-size="12">192.168.1.10</text>
+                        <text class="details" x="140" y="275" text-anchor="middle" fill="#ffd700" font-size="12" opacity="0">Serveur Apache</text>
+                        <text class="details" x="140" y="295" text-anchor="middle" fill="#ffd700" font-size="12" opacity="0">PHP 7.4</text>
+                        <text class="details" x="140" y="315" text-anchor="middle" fill="#ffd700" font-size="12" opacity="0">Sécurité renforcée</text>
                     </g>
                     
-                    <!-- Développeur -->
-                    <g class="hoverable" id="dev" transform-origin="160 450">
-                        <circle cx="160" cy="450" r="60" fill="#f0f0f0" stroke="#ffd700" stroke-width="2"/>
-                        <text class="main-text" x="160" y="435" text-anchor="middle" fill="#0f0f0f" font-size="18">Dev</text>
-                        <text class="main-text" x="160" y="460" text-anchor="middle" fill="#0f0f0f" font-size="14">192.168.1.100</text>
-                        <text class="details" x="160" y="435" text-anchor="middle" fill="#ffd700" font-size="14" opacity="0">Accès SSH sécurisé</text>
-                        <text class="details" x="160" y="460" text-anchor="middle" fill="#ffd700" font-size="14" opacity="0">Git, Node.js</text>
-                        <text class="details" x="160" y="485" text-anchor="middle" fill="#ffd700" font-size="14" opacity="0">Environnement isolé</text>
+                    <!-- LAN Gateway -->
+                    <rect x="660" y="275" width="100" height="40" fill="#4a4a4a" stroke="#ffd700" stroke-width="2"/>
+                    <text x="710" y="295" text-anchor="middle" fill="#f0f0f0" font-size="12">Gateway LAN</text>
+                    <text x="710" y="310" text-anchor="middle" fill="#f0f0f0" font-size="10">10.0.0.1/16</text>
+
+                    <!-- Base de données (right side) -->
+                    <g class="hoverable" id="database" transform-origin="860 300">
+                        <rect x="790" y="245" width="140" height="100" fill="#2a2a2a" stroke="#ffd700" stroke-width="2" rx="15" ry="15"/>
+                        <text class="main-text" x="860" y="275" text-anchor="middle" fill="#ffd700" font-size="16">Base de</text>
+                        <text class="main-text" x="860" y="295" text-anchor="middle" fill="#ffd700" font-size="16">données</text>
+                        <text class="main-text" x="860" y="315" text-anchor="middle" fill="#ffd700" font-size="12">192.168.1.20</text>
+                        <text class="details" x="860" y="275" text-anchor="middle" fill="#ffd700" font-size="12" opacity="0">MySQL 8.0</text>
+                        <text class="details" x="860" y="295" text-anchor="middle" fill="#ffd700" font-size="12" opacity="0">Réplication activée</text>
+                        <text class="details" x="860" y="315" text-anchor="middle" fill="#ffd700" font-size="12" opacity="0">Chiffrement des données</text>
                     </g>
                     
-                    <!-- Base de données -->
-                    <g class="hoverable" id="database" transform-origin="660 290">
-                        <rect x="575" y="225" width="170" height="120" fill="#2a2a2a" stroke="#ffd700" stroke-width="2" rx="15" ry="15"/>
-                        <text class="main-text" x="660" y="265" text-anchor="middle" fill="#ffd700" font-size="18">Base de</text>
-                        <text class="main-text" x="660" y="290" text-anchor="middle" fill="#ffd700" font-size="18">données</text>
-                        <text class="main-text" x="660" y="315" text-anchor="middle" fill="#ffd700" font-size="14">192.168.1.20</text>
-                        <text class="details" x="660" y="265" text-anchor="middle" fill="#ffd700" font-size="14" opacity="0">MySQL 8.0</text>
-                        <text class="details" x="660" y="290" text-anchor="middle" fill="#ffd700" font-size="14" opacity="0">Réplication activée</text>
-                        <text class="details" x="660" y="315" text-anchor="middle" fill="#ffd700" font-size="14" opacity="0">Chiffrement des données</text>
+                    <!-- Développeur (connected to LAN Gateway) -->
+                    <g class="hoverable" id="dev" transform-origin="700 540">
+                        <circle cx="700" cy="540" r="70" fill="#f0f0f0" stroke="#ffd700" stroke-width="2"/>
+                        <text class="main-text" x="700" y="530" text-anchor="middle" fill="#0f0f0f" font-size="18">Dev</text>
+                        <text class="main-text" x="700" y="555" text-anchor="middle" fill="#0f0f0f" font-size="14">192.168.1.100</text>
+                        <text class="details" x="700" y="520" text-anchor="middle" fill="#0f0f0f" font-size="14" opacity="0">Accès SSH sécurisé</text>
+                        <text class="details" x="700" y="545" text-anchor="middle" fill="#0f0f0f" font-size="14" opacity="0">Git, Node.js</text>
+                        <text class="details" x="700" y="570" text-anchor="middle" fill="#0f0f0f" font-size="14" opacity="0">Environnement isolé</text>
                     </g>
                     
+                    <!-- Add network names -->
+                    <text x="140" y="225" text-anchor="middle" fill="#ffd700" font-size="14">Réseau DMZ</text>
+                    <text x="860" y="225" text-anchor="middle" fill="#ffd700" font-size="14">Réseau LAN</text>
+
                     <!-- Connections -->
-                    <line x1="400" y1="160" x2="400" y2="225" stroke="#ffd700" stroke-width="3"/>
-                    <line x1="160" y1="345" x2="160" y2="390" stroke="#ffd700" stroke-width="3"/>
-                    <line x1="245" y1="290" x2="325" y2="290" stroke="#ffd700" stroke-width="3"/>
-                    <line x1="475" y1="290" x2="575" y2="290" stroke="#ffd700" stroke-width="3"/>
+                    <line x1="500" y1="100" x2="500" y2="125" stroke="#ffd700" stroke-width="2"/>
+                    <line x1="500" y1="165" x2="500" y2="230" stroke="#ffd700" stroke-width="2"/>
+                    <line x1="440" y1="290" x2="340" y2="290" stroke="#ffd700" stroke-width="2"/>
+                    <line x1="240" y1="295" x2="210" y2="295" stroke="#ffd700" stroke-width="2"/>
+                    <line x1="560" y1="290" x2="660" y2="290" stroke="#ffd700" stroke-width="2"/>
+                    <line x1="760" y1="295" x2="790" y2="295" stroke="#ffd700" stroke-width="2"/>
+                    <line x1="710" y1="315" x2="710" y2="490" stroke="#ffd700" stroke-width="2"/>
                 </svg>
             </div>
         </section>
@@ -348,8 +374,8 @@
             this.querySelectorAll('.details').forEach(detail => {
                 detail.style.opacity = '1';
             });
-            this.style.transform = 'scale(1.2)';
-            this.style.zIndex = '10';
+            this.style.transform = 'scale(1.1)';
+            this.style.zIndex = '5';
         });
         
         element.addEventListener('mouseleave', function() {
