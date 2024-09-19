@@ -14,6 +14,7 @@
         background-color: var(--bg-color);
         color: var(--text-color);
         line-height: 1.6;
+        user-select: none;
     }
     
     header {
@@ -233,21 +234,19 @@
                     <!-- Internet (WAN) -->
                     <ellipse cx="500" cy="70" rx="120" ry="30" fill="#2a2a2a" stroke="#ffd700" stroke-width="2"/>
                     <text x="500" y="75" text-anchor="middle" fill="#f0f0f0" font-size="14">Internet (WAN)</text>
-                    <text x="500" y="90" text-anchor="middle" fill="#f0f0f0" font-size="12">8.8.8.8</text>
+                    <text x="500" y="90" text-anchor="middle" fill="#f0f0f0" font-size="12">172.16.106.1/16</text>
                     
                     <!-- WAN Gateway -->
                     <rect x="450" y="125" width="100" height="40" fill="#4a4a4a" stroke="#ffd700" stroke-width="2"/>
                     <text x="500" y="145" text-anchor="middle" fill="#f0f0f0" font-size="12">Gateway WAN</text>
-                    <text x="500" y="160" text-anchor="middle" fill="#f0f0f0" font-size="10">192.168.0.1/24</text>
+                    <text x="500" y="160" text-anchor="middle" fill="#f0f0f0" font-size="10">172.16.106.254/16</text>
 
                     <!-- Pare-feu -->
                     <g class="hoverable" id="firewall" transform-origin="500 300">
                         <rect x="440" y="230" width="120" height="120" fill="#ffd700" stroke="#0f0f0f" stroke-width="2"/>
                         <text class="main-text" x="500" y="280" text-anchor="middle" fill="#0f0f0f" font-size="16" font-weight="bold">Pare-feu</text>
-                        <text class="main-text" x="500" y="300" text-anchor="middle" fill="#0f0f0f" font-size="12">192.168.1.1</text>
-                        <text class="details" x="500" y="270" text-anchor="middle" fill="#0f0f0f" font-size="12" opacity="0">. . .<text>
+                        <text class="details" x="500" y="270" text-anchor="middle" fill="#0f0f0f" font-size="12" opacity="0">PFSense<text>
                         <text class="details" x="500" y="290" text-anchor="middle" fill="#0f0f0f" font-size="12" opacity="0">. . .<text>
-                        <text class="details" x="500" y="310" text-anchor="middle" fill="#0f0f0f" font-size="12" opacity="0">Contrôle d'accès granulaire</text>
                     </g>
                     
                     <!-- DMZ Gateway -->
@@ -302,7 +301,7 @@
                     <line x1="240" y1="295" x2="210" y2="295" stroke="#ffd700" stroke-width="2"/>
                     <line x1="560" y1="290" x2="660" y2="290" stroke="#ffd700" stroke-width="2"/>
                     <line x1="760" y1="295" x2="790" y2="295" stroke="#ffd700" stroke-width="2"/>
-                    <line x1="710" y1="315" x2="710" y2="490" stroke="#ffd700" stroke-width="2"/>
+                    <line x1="710" y1="315" x2="710" y2="470" stroke="#ffd700" stroke-width="2"/>
                 </svg>
             </div>
         </section>
